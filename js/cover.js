@@ -28,19 +28,19 @@ $(function() {
 
         $('#video-play').click(function(event) {
             event.preventDefault();
-            if ($(this).hasClass('ion-ios-play')) {
+            if ($(this).hasClass('fa-play')) {
                 $('.player').playYTP();
             } else {
                 $('.player').pauseYTP();
             }
-            $(this).toggleClass('ion-ios-play ion-ios-pause');
+            $(this).toggleClass('fa-play fa-pause');
             return false;
         });
 
         $('#video-volume').click(function(event) {
             event.preventDefault();
             $('.player').toggleVolume();
-            $(this).toggleClass('ion-android-volume-mute ion-volume-high');
+            $(this).toggleClass('fa-volume-off fa-volume-up');
             return false;
         });
 
