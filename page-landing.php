@@ -9,8 +9,8 @@ Template Name: Page Landing
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="One page theme for building simple and beautiful business or personal website">
-    <meta name="author" content="forbetterweb.com">
+    <meta name="description" content="Mision Paz a las Naciones - Tu Casa">
+    <meta name="author" content="misionpaz.org">
 
     <title>Mision Paz a las Naciones.</title>
 
