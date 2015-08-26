@@ -60,7 +60,7 @@ $(function() {
 // Countdown
 $('#clock').countdown(fecha_contador).on('update.countdown', function(event) {
        var $this = $(this).html(event.strftime(''
-                + '<div><span>%-d</span>dia%!d</div>'
+                + '<div><span>%-D</span>dia%!D</div>'
          + '<div><span>%H</span>horas</div>'
          + '<div><span>%M</span>min</div>'
          + '<div><span>%S</span>seg</div>'));
