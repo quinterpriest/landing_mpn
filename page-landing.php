@@ -42,30 +42,86 @@ Template Name: Page Landing
 <!-- Header -->
 
 
-<section id="top" class="site-wrapper" style="background-image: url(http://sergioromero.cl/vesol/wp-content/uploads/ss-2-bg.jpg);">
-    <!-- Video from YouTube. Have Questions? How To: https://github.com/pupunzi/jquery.mb.YTPlayer/wiki -->
-    <a id="bgndVideo" class="player" data-property="{videoURL:'http://youtu.be/rlYVhDKCbqY', containment:'.site-wrapper', autoPlay:true, loop:true, mute:true, startAt:0, stopAt: 50, realfullscreen:true, quality:'small', opacity:1, showControls: false, showYTLogo:false, vol:25}"></a>
+<section id="top" class="site-wrapper" 
+<?php if(get_field('landing_mobil_background')!=''): ?>
+    style="background-image: url(<?php the_field('landing_mobil_background'); ?>);"
+<?php else: ?>    
+    style="background-image: url(<?php echo get_template_directory_uri();?>/../church-event-child/images/bg-mobil.jpg);"
+<?php endif; ?>
+>
+    <!-- Video from YouTube. Have Questions? How To: https://github.com/pupunzi/jquery.mb.YTPlayer/wiki http://youtu.be/rlYVhDKCbqY-->
+    <a id="bgndVideo" class="player" data-property="{videoURL:'<?php the_field('landing_background_video'); ?>', containment:'.site-wrapper', autoPlay:true, loop:true, mute:false, startAt:0, stopAt: 0, realfullscreen:true, quality:'<?php the_field('landing_video_quality'); ?>', opacity:1 , showControls: false, showYTLogo:false, vol:25}"></a>
     <div class="overlay"></div>
     <div class="site-wrapper-inner">
         <div class="masthead clearfix wow fadeIn" data-wow-delay=".9s">
             <div class="inner">
                 <h3 class="masthead-brand">
-                    <a href="tel:1234567890">
+                    <?php 
+                        //Cambiamos la configuración de tiempo en PHP a nuestra región
+                        $diaDeLaSemana = strftime("%A"); //Obtenemos el nombre del día de la semana en español
+                        if($diaDeLaSemana == "sábado" || $diaDeLaSemana == "domingo")
+                           $url="/senal-en-vivo";
+                        else
+                           $url="/inicio";
+                    ?>
+                    <a href="<?php echo $url; ?>">
                         <i class="icon ion-android-call"></i> Saltar Intro
                         <small> 
-                            <img width="90px" src="<?php echo get_template_directory_uri();?>/../church-event-child/images/logo.png" alt="">
+                            <img width="90px" alt=""
+                            
+                            <?php if(get_field('landing_img_intro')!=''): ?>
+                                src="<?php the_field('landing_img_intro'); ?>" 
+                            <?php else: ?>    
+                                src="<?php echo get_template_directory_uri();?>/../church-event-child/images/logo.png" 
+                            <?php endif; ?>
+
+                            >
                         </small>
                     </a>
                 </h3>
                 <nav>
                     <ul class="nav masthead-nav">
-                        <li><a title="Visitar Twitter" href="/"><i class="fa fa-twitter"></i></a></li>
-                        <li><a title="Visitar Facebook" href="/"><i class="fa fa-facebook"></i></a></li>
-                        <li><a title="Visitar Youtube" href="/"><i class="fa fa-youtube"></i></a></li>
-                        <li><a title="Visitar Instagram" href="/"><i class="fa fa-instagram"></i></a></li>
-                        <li><a title="Visitar Url" href="/"><i class="fa fa-link"></i></a></li>
+
+                        <?php if(get_field('landing_url_twitter')!=''): ?>
+                            <li>
+                                <a title="Visitar Twitter" href="<?php the_field('landing_url_twitter'); ?>" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if(get_field('landing_url_facebook')!=''): ?>
+                        <li>
+                            <a title="Visitar Facebook" href="<?php the_field('landing_url_facebook'); ?>" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(get_field('landing_url_youtube')!=''): ?>
+                        <li>
+                            <a title="Visitar Youtube" href="<?php the_field('landing_url_youtube'); ?>" target="_blank">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(get_field('landing_url_instagram')!=''): ?>
+                        <li>
+                            <a title="Visitar Instagram" href="<?php the_field('landing_url_instagram'); ?>" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(get_field('landing_url_evento')!=''): ?>
+                        <li>
+                            <a title="Visitar Url" href="<?php the_field('landing_url_evento'); ?>" target="_blank">
+                                <i class="fa fa-link"></i>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
-                </h3>
                 </nav>
                 
             </div>
@@ -99,9 +155,18 @@ Template Name: Page Landing
 <script src="<?php echo get_template_directory_uri();?>/../church-event-child/js/wow.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/../church-event-child/js/jquery.countdown.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/../church-event-child/js/smoothscroll.js"></script>
+
 <script>
+
+    <?php if(get_field('landing_date_event')!=''): ?>
+        var fecha_contador="<?php the_field('landing_date_event'); ?>";
+        var use_contador=true; 
+    <?php else: ?>  
+        var fecha_contador="<?php echo $fecha_actual = date('Y/m/d');  ?>";
+        var use_contador=false;                  
+    <?php endif; ?>
     
-    var fecha_contador="2015/10/31";
+    
 
 </script>
 

@@ -58,6 +58,7 @@ $(function() {
      });*/
 
 // Countdown
+if(use_contador){
 $('#clock').countdown(fecha_contador).on('update.countdown', function(event) {
        var $this = $(this).html(event.strftime(''
                 + '<div><span>%-D</span>dia%!D</div>'
@@ -65,6 +66,7 @@ $('#clock').countdown(fecha_contador).on('update.countdown', function(event) {
          + '<div><span>%M</span>min</div>'
          + '<div><span>%S</span>seg</div>'));
      });
+}
 
 // Load WOW.js on non-touch devices
 var isPhoneDevice = "ontouchstart" in document.documentElement;
